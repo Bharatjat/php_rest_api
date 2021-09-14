@@ -4,7 +4,6 @@
     include("config.php");
     $name = json_decode(file_get_contents("php://input"), true);
     $fname = $name["fname"];
-    print_r($name);
     $query = "SELECT * FROM test_3 WHERE first_name LIKE '%{$fname}%'";
     $res = mysqli_query($conn, $query) or die("query not run");
     if (mysqli_num_rows($res) > 0) {

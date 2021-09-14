@@ -3,8 +3,9 @@ $(function () {
   $("#viewallbtn").on("click", function () {
     $.ajax({
       method: "GET",
-      url: "http://localhost/phplearn/api/api-featch-all.php",
+      url: "http://localhost/phplearn/php_rest_api/api-featch-all.php",
       async: false,
+      dataType: "json",
       success: function (response) {
         if (response.status == false) {
           $("#popup").attr("class", " container alert alert-danger");
@@ -30,16 +31,20 @@ $(function () {
       var jsondata = JSON.stringify(data);
       $.ajax({
         method: "POST",
-        url: "http://localhost/phplearn/api/api-search.php",
+        url: "http://localhost/phplearn/php_rest_api/api-search.php",
         data: jsondata,
-        success: function(response) {
-          console.log(1);
+        async: false,
+        dataType: "json",
+        success: function (response) {
           if (response.status == false) {
             $("#popup").attr("class", " container alert alert-danger");
             $("#popup").text(response.massage);
             $("#popup").hide(5000);
           }
           showall(response);
+        },
+        error: function () {
+          console.log(2);
         }
       });
     } else {
@@ -60,21 +65,22 @@ $(function () {
     var jsondata = JSON.stringify(data);
     $.ajax({
       type: "POST",
-      url: "http://localhost/phplearn/api/api-insert.php",
+      url: "http://localhost/phplearn/php_rest_api/api-insert.php",
       data: jsondata,
+      async: false,
+      dataType: "json",
       success: function (response) {
         if (response.status == false) {
           $("#popup").attr("class", " container alert alert-danger");
           $("#popup").text(response.massage);
           $("#popup").hide(5000);
-        } else if(response.status == true) {
+        } else if (response.status == true) {
           $("#popup").attr("class", " container alert alert-success");
           $("#popup").text("Record inserted succesfully");
           $("#popup").hide(5000);
           $("#viewallbtn").trigger("click");
         }
       },
-      
     });
   });
 
@@ -98,7 +104,7 @@ $(function () {
       var jsondata = JSON.stringify(obj);
       $.ajax({
         method: "POST",
-        url: "http://localhost/phplearn/api/api-update.php",
+        url: "http://localhost/phplearn/php_rest_api/api-update.php",
         data: jsondata,
         async: false,
         dataType: "json",
@@ -107,17 +113,20 @@ $(function () {
             $("#popup").attr("class", " container alert alert-danger");
             $("#popup").text(response.massage);
             $("#popup").hide(5000);
-          } else {
+            $(".modal").hide();
+          } else if(response.status == true){
             $("#popup").attr("class", " container alert alert-success");
             $("#popup").text("Record updated succesfully");
             $("#popup").hide(5000);
             $(".modal").hide();
+            $("#viewallbtn").trigger("click");
           }
         },
         error: function () {
           $("#popup").attr("class", " container alert alert-danger");
           $("#popup").text("Sorry something went wrong!");
           $("#popup").hide(5000);
+          $(".modal").hide();
         },
       });
     });
@@ -130,16 +139,17 @@ $(function () {
     var jsondata = JSON.stringify(obj);
     $.ajax({
       method: "POST",
-      url: "http://localhost/phplearn/api/api-delete.php",
+      url: "http://localhost/phplearn/php_rest_api/api-delete.php",
       data: jsondata,
       async: false,
       dataType: "json",
       success: function (response) {
+        console.log(1);
         if (response.status == false) {
           $("#popup").attr("class", " container alert alert-danger");
           $("#popup").text(response.massage);
           $("#popup").hide(5000);
-        } else {
+        } else if(response.status == true){
           $("#popup").attr("class", " container alert alert-success");
           $("#popup").text("Record Deleted succesfully");
           $("#popup").hide(5000);
@@ -147,6 +157,7 @@ $(function () {
         }
       },
       error: function () {
+        console.log(2);
         $("#popup").attr("class", " container alert alert-danger");
         $("#popup").text("Sorry something went wrong!");
         $("#popup").hide(5000);

@@ -8,7 +8,6 @@
     $fname = $data["fname"];
     $lname = $data["lname"];
     $age = $data['age'];
-    print_r($data);
     $query = "INSERT INTO test_3 (first_name,last_name,age)
                 VALUES ('{$fname}', '{$lname}', {$age})";
     if (mysqli_query($conn, $query)) {
