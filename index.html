@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+    <title>Rest api crud operation</title>
+</head>
+
+<body>
+    <!-- model -->
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">first name</span>
+                        <input type="text" class="form-control" aria-label="first_name" aria-describedby="basic-addon1"
+                            id="EditFname">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">last name</span>
+                        <input type="text" class="form-control" aria-label="last_name" aria-describedby="basic-addon1"
+                            id="EditLname">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Age</span>
+                        <input type="text" class="form-control" aria-label="age" aria-describedby="basic-addon1"
+                            id="EditAge">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="SaveEditBtn">Save changes</button>
+                    <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- nav bar -->
+    <div class="container" style="background-color: rgb(165, 149, 202)">
+        <div class="row">
+            <div class="col-md-7">
+                <h1>
+                    PHP Rest API CRUD operation.
+                </h1>
+            </div>
+            <div class="col-md-5 d-flex justify-content-end align-items-center">
+                <div>
+                    <form action="" method="post">
+                        <input class="form-control" type="search" name="search" id="searchvalue"
+                            placeholder="search name">
+                    </form>
+                </div>
+                <div class="offset-md-1">
+                    <button class="btn btn-outline-success" type="submit" id="searchbtn">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="background-color: rgb(245, 158, 226)">
+        <form action="" method="post" id="insertform"></form>
+        <div class="row align-items-center p-2">
+            <div class="col-md-3 d-flex">
+                <input type="text" class="form-control" placeholder="First name" id="fname" name="fname">
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="last name" id="lname" name="lname">
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="age" id="age" name="age">
+            </div>
+            <div class="col-md-3 row justify-content-between">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success" id="savebtn">
+                        save
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success" id="viewallbtn">
+                        view all
+                    </button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <div id="popup">
+
+    </div>
+
+    <div class="container p-2 ">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                    <th scope="col">age</th>
+                    <th scope="col">action</th>
+                </tr>
+            </thead>
+            <tbody id="showdata">
+
+            </tbody>
+        </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
